@@ -39,7 +39,7 @@ import java.util.*;
 /**
  * The crawler to crawl AWS instances for janitor monkey using Edda.
  */
-public class EddaELBJanitorCrawler implements JanitorCrawler {
+public class EddaELBJanitorCrawler extends AbstractJanitorCrawler implements JanitorCrawler {
 
     class DNSEntry {
         String dnsName;
@@ -159,19 +159,7 @@ public class EddaELBJanitorCrawler implements JanitorCrawler {
         }
 
         Map<String, List<String>> elBtoASGMap = buildELBtoASGMap(region);
-        for(Resource resource : resources) {
-            List<String> asgList = elBtoASGMap.get(resource.getId());
-            if (asgList != null && asgList.size() > 0) {
-                resource.setAdditionalField("referencedASGCount", "" + asgList.size());
-                String asgStr = StringUtils.join(asgList,",");
-                resource.setDescription(resource.getDescription() + ", ASGS=" + asgStr);
-                LOGGER.debug(String.format("Resource ELB %s is referenced by ASGs %s", resource.getId(), asgStr));
-            } else {
-                resource.setAdditionalField("referencedASGCount", "0");
-                resource.setDescription(resource.getDescription() + ", ASGS=none");
-                LOGGER.debug(String.format("No ASGs found for ELB %s", resource.getId()));
-            }
-        }
+        updateResources(resources, elBtoASGMap);
 
         Map<String, List<DNSEntry>> elBtoDNSMap = buildELBtoDNSMap(region);
         for(Resource resource : resources) {
