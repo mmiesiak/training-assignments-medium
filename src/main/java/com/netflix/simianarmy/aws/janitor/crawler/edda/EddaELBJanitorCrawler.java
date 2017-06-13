@@ -25,7 +25,6 @@ import com.netflix.simianarmy.aws.AWSResource;
 import com.netflix.simianarmy.aws.AWSResourceType;
 import com.netflix.simianarmy.basic.BasicSimianArmyContext;
 import com.netflix.simianarmy.client.edda.EddaClient;
-import com.netflix.simianarmy.janitor.JanitorCrawler;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.codehaus.jackson.JsonNode;
@@ -34,12 +33,19 @@ import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The crawler to crawl AWS instances for janitor monkey using Edda.
  */
-public class EddaELBJanitorCrawler extends AbstractJanitorCrawler implements JanitorCrawler {
+public class EddaELBJanitorCrawler extends AbstractJanitorCrawler {
 
     class DNSEntry {
         String dnsName;

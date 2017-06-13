@@ -17,18 +17,16 @@
  */
 package com.netflix.simianarmy.aws.janitor.crawler;
 
+import com.netflix.simianarmy.Resource;
 import com.netflix.simianarmy.aws.janitor.crawler.edda.AbstractJanitorCrawler;
 import com.netflix.simianarmy.basic.BasicSimianArmyContext;
-import org.apache.commons.lang.Validate;
-
-import com.netflix.simianarmy.Resource;
 import com.netflix.simianarmy.client.aws.AWSClient;
-import com.netflix.simianarmy.janitor.JanitorCrawler;
+import org.apache.commons.lang.Validate;
 
 /**
  * The abstract class for crawler of AWS resources.
  */
-public abstract class AbstractAWSJanitorCrawler extends AbstractJanitorCrawler implements JanitorCrawler {
+public abstract class AbstractAWSJanitorCrawler extends AbstractJanitorCrawler {
     /** The AWS client. */
     private final AWSClient awsClient;
 

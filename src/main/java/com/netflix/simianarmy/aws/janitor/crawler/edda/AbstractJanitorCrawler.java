@@ -1,6 +1,7 @@
 package com.netflix.simianarmy.aws.janitor.crawler.edda;
 
 import com.netflix.simianarmy.Resource;
+import com.netflix.simianarmy.janitor.JanitorCrawler;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 
-public class AbstractJanitorCrawler {
+public abstract class AbstractJanitorCrawler implements JanitorCrawler {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractJanitorCrawler.class);
 
     protected void updateResources(List<Resource> resources, Map<String, List<String>> elBtoASGMap) {
